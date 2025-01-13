@@ -14,6 +14,19 @@ int main(int argc, char** argv) {
     char cmd[BUFSIZE] = "wc -c < ";
     char *file_name = argv[1];
 
+    // Use stat instead of system command to get file size
+    struct stat st;
+    if (stat(file_name, &st) != 0) {
+        perror("Error getting file information");
+        return EXIT_FAILURE;
+    }
+
+    // Print file size
+    printf("%ld\n", st.st_size);
+
+    return EXIT_SUCCESS;
+
+/*
     //check if the file exits
     FILE *file = fopen(file_name, "rb");
     if (!file) {
@@ -36,4 +49,5 @@ int main(int argc, char** argv) {
     }
 
     system(cmd);
+*/
 }
