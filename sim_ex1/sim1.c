@@ -14,8 +14,8 @@ int main(int argc, char** argv) {
     char cmd[BUFSIZE] = "wc -c < ";
     
     //check for over follow
-    int allowed_len  = BUFSIZE - len(cmd) -1;
-    if (allowed_len < len(argv[1])) {
+    int allowed_len  = BUFSIZE - strlen(cmd) -1;
+    if (allowed_len >= strlen(argv[1])) {
         perror("Invalid file size");
         return EXIT_FAILURE;
     }
