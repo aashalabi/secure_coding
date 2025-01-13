@@ -12,6 +12,23 @@ int main(int argc, char** argv) {
         return -1;
     }
     char cmd[BUFSIZE] = "wc -c < ";
+    
+    //check for over follow
+    int allowed_len  = BUFSIZE - len(cmd) -1;
+    if (allowed_len < len(argv[1])) {
+        perror("Invalid file size");
+        return EXIT_FAILURE;
+    }
+
+    //check if the file exits
+    FILE *file = fopen(argv[1], "rb");
+    if (!file) {
+        perror("fopen");
+        return EXIT_FAILURE;
+    }
+
+    //copy argument
     strcat(cmd, argv[1]);
+
     system(cmd);
 }
