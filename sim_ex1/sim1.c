@@ -27,14 +27,13 @@ int main(int argc, char** argv) {
     //check for over follow
     int allowed_len  = BUFSIZE - strlen(cmd) -1;
     if (allowed_len >= strlen(file_name)) {
-        perror("Invalid file size");
-        return EXIT_FAILURE;
-    }
-    else{
         //copy argument
         strcat(cmd, file_name);
     }
-
+    else{
+        perror("Invalid file size");
+        return EXIT_FAILURE;
+    }
 
     system(cmd);
 }
