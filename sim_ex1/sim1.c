@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         return -1;
     }
     char cmd[BUFSIZE] = "wc -c < ";
-    char * file_name = argv[1];
+    char *file_name = argv[1];
 
     //check if the file exits
     FILE *file = fopen(file_name, "rb");
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     int allowed_len  = BUFSIZE - strlen(cmd) -1;
     if (allowed_len >= strlen(file_name)) {
         //copy argument
-        strcat(cmd, file_name);
+        strncat(cmd, file_name, allowed_len);
     }
     else{
         perror("Invalid file size");
