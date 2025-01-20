@@ -1,3 +1,15 @@
-all:
-	gcc -o sim1 sim1.c -lm
-	gcc -o sim3 sim3.c -lm
+CC = gcc
+CFLAGS = -lm
+TARGETS = sim1 sim3
+
+all: $(TARGETS)
+
+sim1: sim1.c
+    $(CC) -o $@ $^ $(CFLAGS)
+
+sim3: sim3.c
+    $(CC) -o $@ $^ $(CFLAGS)
+
+clean:
+    rm -f $(TARGETS)
+
